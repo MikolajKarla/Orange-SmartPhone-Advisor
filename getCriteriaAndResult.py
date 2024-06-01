@@ -1,0 +1,1 @@
+# tutaj beda funkcje getCriteria getResults itd.
