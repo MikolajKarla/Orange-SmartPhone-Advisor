@@ -12,7 +12,8 @@ def generateCriteria():
     print(request.form)
     if request.method == 'POST':
         table = getCriteriaAndResult.getCriteria(request.form["question"])
-        print(table)
+        # print(table)
+        # finalTable =getCriteriaAndResult.getResults(table)
     return render_template('/index.html', table=table)
 
 

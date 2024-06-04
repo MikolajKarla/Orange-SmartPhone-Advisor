@@ -19,8 +19,13 @@
 
     
     <div class="table">
-        {{ table }}
-        </table>
+        {% if table %}
+        <div>
+            {{ table | safe }}
+        </div>
+    {% else %}
+        <p>Brak danych do wyświetlenia.</p>
+    {% endif %}
     </div>
 </body>
 </html>

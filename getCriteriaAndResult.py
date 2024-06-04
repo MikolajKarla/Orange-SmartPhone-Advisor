@@ -7,7 +7,7 @@ client = Client(
 ) 
 #występuje błąd async, jednak zwraca odpowiedź
 
-def getCriteria(question):
+def getCriteria(question:str):
     response = client.chat.completions.create(
         model="gpt-4-turbo",
         provider=Bing,
@@ -18,11 +18,15 @@ def getCriteria(question):
     for tag in soup.find_all(True):
         if tag.name != 'table' and tag.name != 'tr' and tag.name != 'td':
             tag.decompose()
-        return soup
+    # for tag in soup.find_all('td'):
+    #     tag.decompose()
+    print(soup)
+    soup = str(soup)
+    return soup
     
 
-
-# def getResults(question):
+#nie dziala jeszcze
+# def getResults(question:str):
 #     response = client.chat.completions.create(
 #         model="gpt-4-turbo",
 #         provider=Bing,
@@ -30,10 +34,3 @@ def getCriteria(question):
 #     )
 #     print( response.choices[0].message.content)
 
-
-
-if __name__ == '__main__':
-    try:
-        getCriteria()
-    except():
-        print(Exception)
