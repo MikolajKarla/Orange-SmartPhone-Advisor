@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LLM Chooser</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+  </head>
+  <body>
+<section class="hero is-info is-fullheight" >
+  <div class="hero-head">
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="title mt-3">
+          <a class="title has-text-weight-bold is-size-3">
+            LLM Chooser
+               <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+          </a>
+            <div id="navbarMenuHeroA" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item"> Contact Us </a>
+            <span class="navbar-item">
+              <div class="button is-primary is-inverted has-text-light">
+                   <a href="https://github.com/MikolajKarla/Orange-SmartPhone-Advisor.git">
+                       <div class="block has-text-light">
+                           GitHub
+                       </div>
+                       </a>
+                </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </nav>
+  </div>
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+
+<div class="box">
+
+     <p class="title">Enter your query:
+
+      <div class="panel-block">
+    <p class="control">
+      <input class="input is-link" type="text" placeholder="Search" />
+
+    </p>
+  </div>
+    <button class="js-modal-trigger button is-link" data-target="modal-js-example">
+  Find LLM
+</button>
+
+    </div>
+</div>
+<div id="modal-js-example" class="modal">
+  <div class="modal-background"></div>
+
+  <div class="modal-content">
+    <div class="box">
+
+ <p class="title has-text-centered">Ranking:
+
+
+<table class="table is-striped is-fullwidth">
+        <div class="container has-text-centered">
+  <thead>
+
+  <th>LLM:</th>
+  <th>LLM1</th>
+  <th>LLM2</th>
+  <th>LLM3</th>
+  <th>LLM4</th>
+  <th>LLM5</th>
+
+      </thead>
+
+            <tbody>
+
+            <tr>
+            <th>Criteria 1</th>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+
+                </tr>
+                        <tr>
+            <th>Criteria 2</th>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+
+                </tr>
+                        <tr>
+            <th>Criteria 3</th>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+
+                </tr>
+                        <tr>
+            <th>Criteria 4</th>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+
+                </tr>
+                        <tr>
+            <th>Criteria 5</th>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+            <td>data</td>
+
+                </tr>
+
+
+
+
+
+
+
+            </tbody>
+</table>
+
+    </div>
+  </div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+      <script>
+          document.addEventListener('DOMContentLoaded', () => {
+  // Functions to open and close a modal
+  function openModal($el) {
+    $el.classList.add('is-active');
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    if(event.key === "Escape") {
+      closeAllModals();
+    }
+  });
+});
+      </script>
+  </div>
+  </body>
+</html>
