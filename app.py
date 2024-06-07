@@ -1,5 +1,4 @@
 from flask import Flask, render_template,request
-from waitress import serve
 import getCriteriaAndResult
 
 app = Flask(__name__)
@@ -18,4 +17,5 @@ def generateCriteria():
 
 
 if __name__ == "__main__":
-    app.run(app,port=8000)
+    # app.run(app,port=8000)
+    app.run(debug=True)

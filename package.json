@@ -4,7 +4,8 @@
   "description": "SmartPhone Advisor is designed to help users find the perfect smartphone based on defined criteria such as screen size, battery capacity, performance, camera quality, and more. The application allows users to define evaluation criteria and presents models that meet these requirements.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildcss": "npx tailwind -i ./static/css/style.css -o ./static/css/main.css --watch"
   },
   "author": "",
   "license": "ISC",
