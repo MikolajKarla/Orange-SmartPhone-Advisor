@@ -1,36 +1,61 @@
-from g4f.client import Client
-from g4f.Provider import Bing
+from g4f.client import Client  
+from g4f.Provider import Bing  
 from bs4 import BeautifulSoup
 
+client = Client()
 
-client = Client(
-) 
-#występuje błąd async, jednak zwraca odpowiedź
-
-def getCriteria(question:str):
+# Function to get criteria for evaluating large language models  
+def get_criteria(question: str):
     response = client.chat.completions.create(
         model="gpt-4-turbo",
         provider=Bing,
-        messages=[{"role": "user", "content": ('Podaj 4-7 kryteriów dla Large Languages Models, aby móc ocenić ich dobre i złe strony wyboru danego modelu językowego. Podaj według formatu: <table class="border"><tr class="border"><td class="border"><strong> kryterium 1:</strong></td><td  class="border"><strong>kryterium 2:</strong></td><td class="border"><strong> kryterium 3:</strong></td><td  class="border"><strong>kryterium 4:</strong></td></tr><tr><td class="border">opis kryterium</td><td class="border">opis kryterium</td><td class="border">opis kryterium</td><td class="border">opis kryterium</td></tr></table>.Będzie on udostępniony na stronie, nie pisz nic poza tą tabelą.Oto pytanie:'+question)}]
+        messages=[
+            {
+                "role": "user",
+                "content": (
+                    f"Provide 4-7 criteria for evaluating Large Language Models. Use the following format:\n\n"
+                    f"<table class='border'>"
+                    f"<tr class='border'>"
+                    f"<td class='border'>cryteriums</td>"
+                    f"<td class='border'>cryteriums</td>"
+                    f"<td class='border'>cryteriums</td>"
+                    f"<td class='border'>cryteriums</td>"
+                    f"</tr><tr><td class='border'>Description of cryterium</td>"
+                    f"<td class='border'>Description of cryterium</td>"
+                    f"<td class='border'>Description of cryterium</td>"
+                    f"<td class='border'>Description of cryterium</td>"
+                    f"</tr></table>"
+                    f"Do not include anything outside this format."
+                    f"Here is the question, return it in Polish language: {question}"
+                )
+            }
+        ]
     )
-    # getResults(response.choices[0].message.content)
+
+
     soup = BeautifulSoup(response.choices[0].message.content, 'html.parser')
     for tag in soup.find_all(True):
-        if tag.name != 'table' and tag.name != 'tr' and tag.name != 'td':
+        if tag.name not in ['table', 'tr', 'td']:
             tag.decompose()
-    # for tag in soup.find_all('td'):
-    #     tag.decompose()
-    print(soup)
-    soup = str(soup)
-    return soup
-    
+    return str(soup)
 
-#nie dziala jeszcze
-# def getResults(question:str):
-#     response = client.chat.completions.create(
-#         model="gpt-4-turbo",
-#         provider=Bing,
-#         messages=[{"role": "user", "content": ('Podaj 4-8 modeli językowych, które będa spełniać te kryteria najlepiej i wypisz je w następnych kolumnach:'+question)}]
-#     )
-#     print( response.choices[0].message.content)
-
+# Function to get language models that fit the criteria  
+def get_results(question: str):
+    response = client.chat.completions.create(
+        model="gpt-4-turbo",
+        provider=Bing,
+        messages=[
+            {
+                "role": "user",
+                "content": (
+                    f"Provide 6-8 LLMS (like chatgpt or gemini) that best meet these criteria. give me html table format with criterias and that models.\n\n"
+                    f"{question}"
+                )
+            }
+        ]
+    )
+    soup = BeautifulSoup(response.choices[0].message.content, 'html.parser')
+    for tag in soup.find_all(True):
+        if tag.name not in ['table', 'tr', 'td']:
+            tag.decompose()
+    return str(soup)

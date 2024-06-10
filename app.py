@@ -10,11 +10,15 @@ def generateCriteria():
     table = ""
     print(request.form)
     if request.method == 'POST':
-        table = getCriteriaAndResult.getCriteria(request.form["question"])
-        # print(table)
+        table = getCriteriaAndResult.get_criteria(request.form["question"])
+        print(table)
         # finalTable =getCriteriaAndResult.getResults(table)
-    return render_template('/index.html', table=table)
+        table2=getCriteriaAndResult.get_results(table)
+    return render_template('/index.html', table=table2)
 
+    # results_question = f"Language models that meet the following criteria: {criteria}"
+    # results = get_results(results_question)
+    # print(results)
 
 if __name__ == "__main__":
     # app.run(app,port=8000)
