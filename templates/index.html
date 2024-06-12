@@ -3,33 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartPhone Advisor</title>
+    <title>LLM Chooser</title>
     <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
 </head>
-<body class=" bg-gradient-to-r from-slate-950 from-10% bg- via-indigo-900 to-90% to-slate-950 ">
-    <header class="flex justify-center"> 
-        <nav class=" inline-flex p-4 shadow-sm text-white  text-center mt-2 mb-6 rounded-3xl">
-    <h1 class="text-xl w-auto hover:scale-105 ">LLM Finder!</h1>
-    <a class="text-xl ml-8  hover:scale-105" href="https://github.com/MikolajKarla/Orange-SmartPhone-Advisor.git">GitHub</a>
-    <a class="text-xl ml-8  hover:scale-105" href="#arena.html">Arena LLM'ów</a>
-    <a class="text-xl ml-8  hover:scale-105" href="https://github.com/MikolajKarla/Orange-SmartPhone-Advisor.git">Contact Us!</a>
+<body class=" bg-gradient-to-r from-black  via-orange-400  to-black ">
+    <header class="flex justify-center items-center"> 
+        <nav class=" inline-flex px-4 pt-2 pb-2 border-white border-r-2 border-b-2  border-l-2 text-center mb-6 rounded-b-3xl">
+    <img src="../static/Orange_logo.png" class="w-10 mr-4" alt="logo">
+    <h1 class=" text-white w-auto hover:scale-105 ">LLM Chooser        !</h1>
+    <a class=" text-white ml-8  hover:scale-105" href="#arena.html">Arena LLM'ów</a>
+    <a class=" text-white ml-8  hover:scale-105" href="https://github.com/MikolajKarla/Orange-SmartPhone-Advisor.git">Contact Us!</a>
 
 </nav>
 </header>
-<main class="container mx-auto text-white px-5 text-center" >
+<main class="container mx-auto  px-5 text-center" >
     <form action="getCriteria" method="post" class="mb-8">
-        <input type="text" name="question" id="question" class="w-7/12 text-lg p-4 bg-transparent rounded-2xl border" placeholder="Twoje pytanie">
-        <input type="submit" class=" bg-transparent rounded-2xl border py-4  text-lg"  value="Wyślij!">
+        <input type="text" name="question" id="question" class="w-7/12 p-2 text-xl bg-transparent rounded-2xl py-4 border-white border-2 text-white"style="rows-5 cols-40" value="Twoje pytanie">
+        <input type="submit" class="w-2/12 bg-transparent rounded-2xl border-2 border-white text-white py-4 text-xl"  value="Wyślij!">
     </form> 
+    
+
     <!-- Do tabelki trzeba dodać jakieś style żeby lepiej wyglądała i prompt poprawić -->
-    <div class="table">
+    <!-- <div class="table text-white" >
         {% if table %}
         <div>
             {{ table | safe }}
         </div>
     {% endif %}
-    </div>
+    </div> -->
+    <!-- <table class="text-white">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>Kryterium językowe:</td>
+                <td>Charakter wypowiedzi:</td>
+                <td>Zrozumiałość:</td>
+                <td>Poprawność wypowiedzi:</td>
+                <td>Kryterium tematyczne:</td>
+                <td>Kryterium tematyczne:</td>
+            </tr>
+        <tr>
+            <td>Nazwa modelu:</td>
+            <td>Odpowiedź zawiera co najmniej jedno słowo</td>
+            <td>Odpowiedź jest pozytywna</td>
+            <td>Odpowiedź jest zrozumiała</td>
+            <td>Odpowiedź jest w języku polskim</td>
+            <td>Odpowiedź jest związana z telefonami</td>
+            <td>Odpowiedź zawiera informacje o odporności na warunki pogodowe</td>
+        </tr>
+        
+        <!-- <tr>
+            <td>Chatgpt 4.0</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Gemini Pro</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Llama 3 8B</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Chatgpt 3.5</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Mistral AI</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Qwen 1.5</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr> -->
+    <!-- </tbody> -->
+    <!-- </table>  -->
+    <h3  class="text-white text-3xl mt-4 ">Ocena modelu:</h3>
+    <ol class=" text-white text-xl list-decimal w-fit text-left justify-center m-auto" >
+        <li>Zawiera co najmniej jedno słowo</li> 
+        <li>Odpowiedź jest pozytywna</li>        
+        <li>Odpowiedź jest zrozumiała</li>       
+        <li>Odpowiedź jest w języku polskim</li> 
+        <li>Odpowiedź jest związana z telefonami</li>
+        <li>Odpowiedź zawiera informacje o odporności na warunki pogodowe</li>
+      </ol>
+
 </main>
 
 </body>
